@@ -1,0 +1,32 @@
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* Adjusted to -50% for the seamless loop */
+  }
+}
+
+.marquee {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-inner {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeAnimation 40s linear infinite;
+}
+
+
+.sticky-shrink {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+}
+
+.shrink {
+  height: 4rem;
+}
