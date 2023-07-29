@@ -56,7 +56,7 @@ export default function Navbar() {
                 <div className="flex shrink-0 items-center">
                   <img
                     className="h-10 w-auto rounded-lg"
-                    src="./src/assets/logo.png"
+                    src="src/public/static/images/logo.png"
                     alt="Nate Skiles"
                   />
                 </div>
