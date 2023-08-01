@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from 'utils'
+import logoUrl from '../../../public/assets/images/logo.png'
 
 const navigation = [
   { name: 'About', href: '#about', current: true },
@@ -56,7 +57,7 @@ export default function Navbar() {
                 <div className="flex shrink-0 items-center">
                   <img
                     className="h-10 w-auto rounded-lg"
-                    src={'src/public/static/images/logo.png'}
+                    src={logoUrl}
                     alt="Nate Skiles"
                   />
                 </div>
