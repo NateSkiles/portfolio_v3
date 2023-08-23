@@ -1,9 +1,3 @@
-import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon
-} from '@heroicons/react/20/solid'
-
 export default function About() {
   return (
     <div
