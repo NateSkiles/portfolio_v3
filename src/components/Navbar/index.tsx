@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from 'utils'
-import logoUrl from '../../../public/assets/images/logo.png'
+import logoUrl from '../../assets/images/logo.png'
 
 const navigation = [
   { name: 'About', href: '#about', current: true },
