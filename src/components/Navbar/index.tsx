@@ -3,6 +3,7 @@ import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from 'utils'
 import logoUrl from '../../assets/images/logo.png'
+import { useSectionContext } from 'components/utils'
 
 const navigation = [
   { name: 'About', href: '#about', current: true },
@@ -12,9 +13,11 @@ const navigation = [
 ]
 
 export default function Navbar() {
-  const [activeNavItem, setActiveNavItem] = useState(
-    navigation.find((item) => item.current)?.name
-  )
+  const { activeSection, setActiveSection } = useSectionContext()
+
+  const handleSectionChange = (section: string) => {
+    setActiveSection(section)
+  }
 
   return (
     <Disclosure as="nav" className={'fixed top-0 z-10 w-full bg-slate-900'}>
@@ -47,9 +50,9 @@ export default function Navbar() {
                       <a
                         key={item.name}
                         href={item.href}
-                        onClick={() => setActiveNavItem(item.name)}
+                        onClick={() => handleSectionChange(item.name)}
                         className={classNames(
-                          item.name === activeNavItem
+                          item.name === activeSection
                             ? 'bg-blue-600 text-slate-100'
                             : 'text-slate-300 hover:bg-slate-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'

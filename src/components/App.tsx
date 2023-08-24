@@ -3,16 +3,19 @@ import Contact from './Contact'
 import Navbar from './Navbar'
 import Projects from './Projects'
 import Skills from './Skills'
+import { SectionProvider } from './utils'
 
 function App() {
   return (
-    <main>
-      <Navbar />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
-    </main>
+    <SectionProvider>
+      <main>
+        <Navbar />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+      </main>
+    </SectionProvider>
   )
 }
 

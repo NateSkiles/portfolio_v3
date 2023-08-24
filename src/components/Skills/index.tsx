@@ -1,4 +1,4 @@
-import Marquee from 'components/Marquee'
+import { Marquee } from 'components/utils/'
 
 export default function Skills() {
   return (
