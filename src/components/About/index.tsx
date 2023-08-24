@@ -1,3 +1,5 @@
+import imgUrl from '../../assets/images/hero_image.jpg'
+
 export default function About() {
   return (
     <div
@@ -57,8 +59,8 @@ export default function About() {
         <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
           <img
             className="max-h-[36rem] w-[24rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[24rem]"
-            src="../../src/assets/images/hero_image.jpg"
-            alt=""
+            src={imgUrl}
+            alt="Picture of Nathan Skiles"
           />
         </div>
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-2 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
