@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from 'utils'
@@ -15,33 +15,13 @@ export default function Navbar() {
   const [activeNavItem, setActiveNavItem] = useState(
     navigation.find((item) => item.current)?.name
   )
-  const [isScrolled, setIsScrolled] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   return (
-    <Disclosure
-      as="nav"
-      className={`bg-slate-900 ${isScrolled ? 'sticky-shrink' : ''}`}
-    >
+    <Disclosure as="nav" className={'fixed top-0 z-10 w-full bg-slate-900'}>
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div
-              className={`relative flex h-24 items-center justify-between ${
-                isScrolled ? 'shrink' : ''
-              }`}
-            >
+            <div className={'relative flex h-24 items-center justify-between'}>
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -56,7 +36,7 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex shrink-0 items-center">
                   <img
-                    className="h-10 w-auto rounded-lg"
+                    className="h-9 w-auto rounded-lg"
                     src={logoUrl}
                     alt="Nate Skiles"
                   />
