@@ -18,45 +18,34 @@ import {
   SiVercel
 } from 'react-icons/si'
 
+const iconsArr = [
+  { icon: SiJavascript, color: '#F7DF1E' },
+  { icon: SiReact, color: '#61DAFB' },
+  { icon: SiNodedotjs, color: '#339933' },
+  { icon: SiNextdotjs, color: '#000000' },
+  { icon: SiVercel, color: '#000000' },
+  { icon: SiJest, color: '#C21325' },
+  { icon: SiHtml5, color: '#E34F26' },
+  { icon: SiCss3, color: '#1572B6' },
+  { icon: SiBootstrap, color: '#7952B3' },
+  { icon: SiCsharp, color: '#239120' },
+  { icon: SiDotnet, color: '#512BD4' },
+  { icon: SiPython, color: '#3776AB' },
+  { icon: SiDjango, color: '#092E20' },
+  { icon: SiGnubash, color: '#4EAA25' },
+  { icon: SiGit, color: '#F05032' },
+  { icon: SiMysql, color: '#4479A1' },
+  { icon: SiMongodb, color: '#47A248' }
+]
+
+const doubledIconsArr = [...iconsArr, ...iconsArr]
 export default function Marquee() {
   return (
     <div className="marquee pt-12">
       <div className="marquee-inner inline-flex">
-        <SiJavascript size={128} color="#F7DF1E" className="mx-5" />
-        <SiReact size={128} color="#61DAFB" className="mx-5" />
-        <SiNodedotjs size={128} color="#339933" className="mx-5" />
-        <SiNextdotjs size={128} color="#000000" className="mx-5" />
-        <SiVercel size={128} color="#000000" className="mx-5" />
-        <SiJest size={128} color="#C21325" className="mx-5" />
-        <SiHtml5 size={128} color="#E34F26" className="mx-5" />
-        <SiCss3 size={128} color="#1572B6" className="mx-5" />
-        <SiBootstrap size={128} color="#7952B3" className="mx-5" />
-        <SiCsharp size={128} color="#239120" className="mx-5" />
-        <SiDotnet size={128} color="#512BD4" className="mx-5" />
-        <SiPython size={128} color="#3776AB" className="mx-5" />
-        <SiDjango size={128} color="#092E20" className="mx-10" />
-        <SiGnubash size={128} color="#4EAA25" className="mx-5" />
-        <SiGit size={128} color="#F05032" className="mx-5" />
-        <SiMysql size={128} color="#4479A1" className="mx-5" />
-        <SiMongodb size={128} color="#47A248" className="mx-5" />
-
-        <SiJavascript size={128} color="#F7DF1E" className="mx-5" />
-        <SiReact size={128} color="#61DAFB" className="mx-5" />
-        <SiNodedotjs size={128} color="#339933" className="mx-5" />
-        <SiNextdotjs size={128} color="#000000" className="mx-5" />
-        <SiVercel size={128} color="#000000" className="mx-5" />
-        <SiJest size={128} color="#C21325" className="mx-5" />
-        <SiHtml5 size={128} color="#E34F26" className="mx-5" />
-        <SiCss3 size={128} color="#1572B6" className="mx-5" />
-        <SiBootstrap size={128} color="#7952B3" className="mx-5" />
-        <SiCsharp size={128} color="#239120" className="mx-5" />
-        <SiDotnet size={128} color="#512BD4" className="mx-5" />
-        <SiPython size={128} color="#3776AB" className="mx-5" />
-        <SiDjango size={128} color="#092E20" className="mx-10" />
-        <SiGnubash size={128} color="#4EAA25" className="mx-5" />
-        <SiGit size={128} color="#F05032" className="mx-5" />
-        <SiMysql size={128} color="#4479A1" className="mx-5" />
-        <SiMongodb size={128} color="#47A248" className="mx-5" />
+        {doubledIconsArr.map(({ icon: Icon, color }, index) => (
+          <Icon key={index} size={128} color={color} className="mx-8" />
+        ))}
       </div>
     </div>
   )
