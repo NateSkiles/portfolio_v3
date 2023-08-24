@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { classNames } from 'utils'
@@ -14,6 +14,29 @@ const navigation = [
 
 export default function Navbar() {
   const { activeSection, setActiveSection } = useSectionContext()
+  useEffect(() => {
+    const handleScroll = () => {
+      for (const section of navigation) {
+        const element = document.getElementById(section.name.toLowerCase())
+
+        if (element) {
+          const rect = element.getBoundingClientRect()
+          if (
+            rect.top <= window.innerHeight / 2 &&
+            rect.bottom >= window.innerHeight / 2
+          ) {
+            setActiveSection(section.name)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  })
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section)
