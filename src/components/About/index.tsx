@@ -41,22 +41,19 @@ export default function About() {
         <div className="lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:mx-auto lg:grid lg:w-full lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:pr-4">
             <div className="lg:max-w-lg">
-              <p className="text-base font-semibold leading-7 text-blue-600">
-                Hi, I&apos;m Nate!
-              </p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
+              <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">
                 About
               </h1>
-              <p className="mt-6 text-xl leading-8 text-gray-700">
-                I have an obsession with finding new ways to solve problems
-                utilizing <i className="text-blue-600">clean code</i>, staying
-                on top of new libraries/frameworks, and becoming a builder of
-                things every day. I have a lifelong passion for technology.
+              <p className="mt-8 text-base font-semibold leading-7 text-blue-600">
+                Hi, I&apos;m Nate!
+              </p>
+              <p className="mt-2 text-xl leading-8 text-gray-700">
+                Providing Customer-Centric Solutions and Support
               </p>
             </div>
           </div>
         </div>
-        <div className="-ml-12 -mt-12 p-12 lg:sticky lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
+        <div className="-ml-2 -mt-12 p-12 lg:top-4 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:overflow-hidden">
           <img
             className="max-h-[36rem] w-[24rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[24rem]"
             src={imgUrl}
@@ -67,19 +64,19 @@ export default function About() {
           <div className="lg:pr-4">
             <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
               <p>
-                Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget
-                risus enim. Mattis mauris semper sed amet vitae sed turpis id.
-                Id dolor praesent donec est. Odio penatibus risus viverra tellus
-                varius sit neque erat velit. Faucibus commodo massa rhoncus,
-                volutpat. Dignissim sed eget risus enim. Mattis mauris semper
-                sed amet vitae sed turpis id.
+                Enthusiastic about discovering fresh approaches to
+                problem-solving, appreciating the art of{' '}
+                <i className="text-blue-600">clean code</i>, staying updated on
+                new libraries and frameworks, all while fostering a daily
+                commitment to growth. My lifelong love for learning continues to
+                drive my journey.
               </p>
               <p className="mt-8">
-                Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis
-                odio id et. Id blandit molestie auctor fermentum dignissim.
-                Lacus diam tincidunt ac cursus in vel. Mauris varius vulputate
-                et ultrices hac adipiscing egestas. Iaculis convallis ac tempor
-                et ut. Ac lorem vel integer orci.
+                Guiding clients through CRM platform implementations for
+                successful project outcomes, I bring impactful solutions to the
+                table. My tech expertise optimizes operational efficiency and
+                insights, while mentoring and knowledge sharing are sources of
+                genuine joy.
               </p>
             </div>
           </div>
