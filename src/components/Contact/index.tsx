@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
+import { FormState } from 'types/components'
+import { Error, Loading, Submitted } from './FormComponents'
+import { SiGithub, SiLinkedin } from 'react-icons/si'
+import { FaFilePdf } from 'react-icons/fa'
 
 const initialFormValues = {
   name: '',
   email: '',
   message: ''
-}
-
-interface FormState {
-  value: 'ready' | 'loading' | 'submitted' | 'error'
 }
 
 export default function Contact() {
@@ -53,27 +53,11 @@ export default function Contact() {
           <div className="mx-auto md:w-2/3 lg:w-1/2">
             <div className="-m-2 flex flex-wrap">
               {formState.value === 'loading' ? (
-                <div className="w-full p-2 text-center">
-                  <div
-                    className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-                    role="status"
-                  >
-                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-                      Loading...
-                    </span>
-                  </div>
-                </div>
+                <Loading />
               ) : formState.value === 'submitted' ? (
-                <div className="w-full p-2 text-center text-green-500">
-                  <p>Thank you for your submission!</p>
-                </div>
+                <Submitted />
               ) : formState.value === 'error' ? (
-                <div className="w-full p-2 text-center text-red-500">
-                  <p>
-                    Oops! There was an issue submitting your request. Please
-                    refresh and try again.
-                  </p>
-                </div>
+                <Error />
               ) : (
                 <form className="-m-2 flex flex-wrap">
                   <div className="w-1/2 p-2">
@@ -152,62 +136,23 @@ export default function Contact() {
                   Portland, OR
                 </p>
                 <span className="inline-flex">
-                  <a className="text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                    </svg>
+                  {/* TODO: Add contact buttons */}
+                  <a
+                    href="https://github.com/NateSkiles"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <SiGithub size={24} className="mx-2" />
                   </a>
-                  <a className="ml-4 text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-                    </svg>
+                  <a
+                    href="https://www.linkedin.com/in/nathan-skiles/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <SiLinkedin size={24} className="mx-2" />
                   </a>
-                  <a className="ml-4 text-gray-500">
-                    <svg
-                      fill="none"
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <rect
-                        width="20"
-                        height="20"
-                        x="2"
-                        y="2"
-                        rx="5"
-                        ry="5"
-                      ></rect>
-                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                    </svg>
-                  </a>
-                  <a className="ml-4 text-gray-500">
-                    <svg
-                      fill="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      className="h-5 w-5"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-                    </svg>
+                  <a href="/public/resume.pdf" target="_blank">
+                    <FaFilePdf size={24} className="mx-2" />
                   </a>
                 </span>
               </div>

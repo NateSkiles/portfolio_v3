@@ -71,6 +71,7 @@ export default function About() {
                 commitment to growth. My lifelong love for learning continues to
                 drive my journey.
               </p>
+              <br />
               <p className="mt-8">
                 Guiding clients through CRM platform implementations for
                 successful project outcomes, I bring impactful solutions to the
