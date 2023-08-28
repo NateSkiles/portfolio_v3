@@ -1,9 +1,18 @@
 import React, { useState } from 'react'
 
+const initialFormValues = {
+  name: '',
+  email: '',
+  message: ''
+}
+
+interface FormState {
+  value: 'ready' | 'loading' | 'submitted' | 'error'
+}
+
 export default function Contact() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [msg, setMsg] = useState('')
+  const [formValue, setFormValue] = useState(initialFormValues)
+  const [formState, setFormState] = useState<FormState>({ value: 'ready' })
 
   const formSubmit = () => {
     const requestOptions: RequestInit = {
@@ -11,22 +20,22 @@ export default function Contact() {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: name, email: email, message: msg })
+      body: JSON.stringify(formValue)
     }
+    setFormState({ value: 'loading' })
     fetch('https://formspree.io/f/mpzgdevk', requestOptions)
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err))
+      .then((response) => response.ok && setFormState({ value: 'submitted' }))
+      .catch(() => setFormState({ value: 'error' }))
   }
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-  }
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value)
-  }
-  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMsg(e.target.value)
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
+    setFormValue((prevFormState) => ({
+      ...prevFormState,
+      [name]: value
+    }))
   }
 
   return (
@@ -43,64 +52,93 @@ export default function Contact() {
           </div>
           <div className="mx-auto md:w-2/3 lg:w-1/2">
             <div className="-m-2 flex flex-wrap">
-              <div className="w-1/2 p-2">
-                <div className="relative">
-                  <label
-                    htmlFor="name"
-                    className="text-sm leading-7 text-slate-100"
+              {formState.value === 'loading' ? (
+                <div className="w-full p-2 text-center">
+                  <div
+                    className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                    role="status"
                   >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    onChange={handleNameChange}
-                    className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-slate-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
-                  />
+                    <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                      Loading...
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="w-1/2 p-2">
-                <div className="relative">
-                  <label
-                    htmlFor="email"
-                    className="text-sm leading-7 text-slate-100"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    onChange={handleEmailChange}
-                    className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
-                  />
+              ) : formState.value === 'submitted' ? (
+                <div className="w-full p-2 text-center text-green-500">
+                  <p>Thank you for your submission!</p>
                 </div>
-              </div>
-              <div className="w-full p-2">
-                <div className="relative">
-                  <label
-                    htmlFor="message"
-                    className="text-sm leading-7 text-slate-100"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    onChange={handleMessageChange}
-                    className="h-32 w-full resize-none rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-6 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
-                  ></textarea>
+              ) : formState.value === 'error' ? (
+                <div className="w-full p-2 text-center text-red-500">
+                  <p>
+                    Oops! There was an issue submitting your request. Please
+                    refresh and try again.
+                  </p>
                 </div>
-              </div>
-              <div className="w-full p-2">
-                <button
-                  onClick={formSubmit}
-                  className="mx-auto flex rounded border-0 bg-blue-600 px-8 py-2 text-lg text-white hover:bg-blue-800 focus:outline-none"
-                >
-                  Submit
-                </button>
-              </div>
+              ) : (
+                <form className="-m-2 flex flex-wrap">
+                  <div className="w-1/2 p-2">
+                    <div className="relative">
+                      <label
+                        htmlFor="name"
+                        className="text-sm leading-7 text-slate-100"
+                      >
+                        Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={handleInputChange}
+                        required
+                        className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-slate-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="w-1/2 p-2">
+                    <div className="relative">
+                      <label
+                        htmlFor="email"
+                        className="text-sm leading-7 text-slate-100"
+                      >
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        onChange={handleInputChange}
+                        required
+                        className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full p-2">
+                    <div className="relative">
+                      <label
+                        htmlFor="message"
+                        className="text-sm leading-7 text-slate-100"
+                      >
+                        Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        onChange={handleInputChange}
+                        required
+                        className="h-32 w-full resize-none rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-6 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="w-full p-2">
+                    <button
+                      onClick={formSubmit}
+                      className="mx-auto flex rounded border-0 bg-blue-600 px-8 py-2 text-lg text-white hover:bg-blue-800 focus:outline-none"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              )}
               <div className="mt-8 w-full border-t border-gray-200 p-2 pt-8 text-center">
                 <a
                   href="mailto:admin@nateskiles.dev"
