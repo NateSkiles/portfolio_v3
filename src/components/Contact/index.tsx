@@ -48,7 +48,7 @@ export default function Contact() {
               Contact
             </h1>
             <p className="mx-auto text-base leading-relaxed lg:w-2/3">
-              Send me a message:
+              {formState.value === 'ready' && 'Send me a message:'}
             </p>
           </div>
           <div className="mx-auto md:w-2/3 lg:w-1/2">
@@ -117,7 +117,7 @@ export default function Contact() {
                   <div className="w-full p-2">
                     <button
                       onClick={formSubmit}
-                      className="mx-auto flex rounded border-0 bg-blue-600 px-8 py-2 text-lg text-white hover:bg-blue-800 focus:outline-none"
+                      className="mx-auto my-6 flex rounded border-0 bg-blue-600 px-8 py-2 text-lg text-white hover:bg-blue-800 focus:outline-none"
                     >
                       Submit
                     </button>

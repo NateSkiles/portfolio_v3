@@ -47,8 +47,8 @@ export default function About() {
               <p className="mt-8 text-base font-semibold leading-7 text-blue-600">
                 Hi, I&apos;m Nate!
               </p>
-              <p className="mt-2 text-xl leading-8 text-gray-700">
-                Providing Customer-Centric Solutions and Support
+              <p className="mt-12 text-xl leading-8 text-gray-700">
+                <i>Providing Customer-Centric Solutions and Support</i>
               </p>
             </div>
           </div>
