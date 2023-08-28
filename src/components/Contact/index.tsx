@@ -3,6 +3,7 @@ import { FormState } from 'types/components'
 import { Error, Loading, Submitted } from './FormComponents'
 import { SiGithub, SiLinkedin } from 'react-icons/si'
 import { FaFilePdf } from 'react-icons/fa'
+import resumeUrl from '../../assets/resume.pdf'
 
 const initialFormValues = {
   name: '',
@@ -151,7 +152,7 @@ export default function Contact() {
                   >
                     <SiLinkedin size={24} className="mx-2" />
                   </a>
-                  <a href="/public/resume.pdf" target="_blank">
+                  <a href={resumeUrl} target="_blank" rel="noreferrer">
                     <FaFilePdf size={24} className="mx-2" />
                   </a>
                 </span>
