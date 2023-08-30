@@ -6,8 +6,11 @@ export type Project = {
   id: number
   title: string
   href: string
+  github: string
   description: string
   pictures: ProjectPictures
+  languages?: string | null
+  frameworks?: string | null
 }
 export interface ProjectPictures {
   cover: {

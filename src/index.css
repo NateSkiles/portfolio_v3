@@ -18,3 +18,8 @@
   white-space: nowrap;
   animation: marqueeAnimation 40s linear infinite;
 }
+
+.zoomed {
+  transform: scale(3);
+  z-index: 1;
+}

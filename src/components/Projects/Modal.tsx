@@ -1,10 +1,51 @@
-import React from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ModalProps } from 'types/components'
 
 export default function Modal({ project }: ModalProps) {
-  const [showModal, setShowModal] = React.useState(false)
-  const { title, description } = project
-  const { cover, screenshots } = project.pictures
+  const [showModal, setShowModal] = useState(false)
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null)
+
+  const { title, description, pictures, languages, frameworks } = project
+  const { cover, screenshots } = pictures
+  const modalRef = useRef<HTMLDivElement | null>(null)
+
+  const toggleZoom = (image: string) => {
+    if (zoomedImage === image) {
+      setZoomedImage(null)
+    } else {
+      setZoomedImage(image)
+    }
+  }
+
+  const handleEscape = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      setShowModal(false)
+      setZoomedImage(null)
+    }
+  }
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      setShowModal(false)
+      setZoomedImage(null)
+    }
+  }
+
+  useEffect(() => {
+    if (showModal) {
+      document.addEventListener('keydown', handleEscape)
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showModal])
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>
@@ -13,7 +54,10 @@ export default function Modal({ project }: ModalProps) {
       {showModal && (
         <>
           <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
-            <div className="relative mx-auto my-6 w-auto max-w-3xl">
+            <div
+              ref={modalRef}
+              className="relative mx-auto my-6 w-auto max-w-3xl"
+            >
               <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
                 <div className="flex items-start justify-between rounded-t border-b border-solid border-slate-200 p-5">
                   <h3 className="text-3xl font-semibold">{title}</h3>
@@ -29,23 +73,42 @@ export default function Modal({ project }: ModalProps) {
                 <div className="mx-2 my-4 grid grid-cols-2 gap-4 md:grid-cols-3">
                   <div>
                     <img
-                      className="h-auto max-w-full rounded-lg"
+                      className="h-auto max-w-full cursor-pointer rounded-lg"
                       src={cover.url}
                       alt={cover.altText}
+                      onClick={() => toggleZoom(cover.url)}
                     />
                   </div>
-                  {screenshots.map((screenshot) => (
-                    <div key={screenshots.indexOf(screenshot)}>
+                  {screenshots.map((screenshot, index) => (
+                    <div key={index}>
                       <img
-                        className="h-auto max-w-full rounded-lg"
+                        className="h-auto max-w-full cursor-pointer rounded-lg"
                         src={screenshot}
                         alt={cover.altText}
+                        onClick={() => toggleZoom(screenshot)}
                       />
                     </div>
                   ))}
+                  {zoomedImage && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
+                      <img
+                        className="max-h-full max-w-full cursor-pointer"
+                        src={zoomedImage}
+                        alt="Zoomed Image"
+                        onClick={() => toggleZoom(zoomedImage)}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-start justify-between rounded-t border-t border-solid border-slate-200 p-5">
                   {description}
+                </div>
+                <div className="mb-8 flex justify-center">
+                  <div>
+                    <b>Languages:</b> {languages}
+                    <br />
+                    <b>Frameworks:</b> {frameworks}
+                  </div>
                 </div>
               </div>
             </div>
