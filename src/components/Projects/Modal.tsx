@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { FaChevronRight } from 'react-icons/fa'
 import { ModalProps } from 'types/components'
 
 export default function Modal({ project }: ModalProps) {
   const [showModal, setShowModal] = useState(false)
   const [zoomedImage, setZoomedImage] = useState<string | null>(null)
 
-  const { title, description, pictures, languages, frameworks } = project
+  const { title, description, pictures, languages, frameworks, github } =
+    project
   const { cover, screenshots } = pictures
   const modalRef = useRef<HTMLDivElement | null>(null)
 
@@ -49,7 +51,11 @@ export default function Modal({ project }: ModalProps) {
   return (
     <>
       <button onClick={() => setShowModal(true)}>
-        <img className="rounded-t-lg" src={cover.url} alt={cover.altText} />
+        <img
+          className="rounded-t-lg hover:opacity-50"
+          src={cover.url}
+          alt={cover.altText}
+        />
       </button>
       {showModal && (
         <>
@@ -73,7 +79,7 @@ export default function Modal({ project }: ModalProps) {
                 <div className="mx-2 my-4 grid grid-cols-2 gap-4 md:grid-cols-3">
                   <div>
                     <img
-                      className="h-auto max-w-full cursor-pointer rounded-lg"
+                      className="h-auto max-w-full cursor-pointer rounded-lg hover:opacity-50"
                       src={cover.url}
                       alt={cover.altText}
                       onClick={() => toggleZoom(cover.url)}
@@ -82,7 +88,7 @@ export default function Modal({ project }: ModalProps) {
                   {screenshots.map((screenshot, index) => (
                     <div key={index}>
                       <img
-                        className="h-auto max-w-full cursor-pointer rounded-lg"
+                        className="h-auto max-w-full cursor-pointer rounded-lg hover:opacity-50"
                         src={screenshot}
                         alt={cover.altText}
                         onClick={() => toggleZoom(screenshot)}
@@ -109,6 +115,13 @@ export default function Modal({ project }: ModalProps) {
                     <br />
                     <b>Frameworks:</b> {frameworks}
                   </div>
+                </div>
+                <div className="mb-4 inline-flex w-full justify-end pr-6 text-blue-500 hover:text-blue-400">
+                  <a href={github} target="_blank" rel="noreferrer">
+                    <p className="flex items-center">
+                      Github <FaChevronRight className="ml-1" />
+                    </p>
+                  </a>
                 </div>
               </div>
             </div>

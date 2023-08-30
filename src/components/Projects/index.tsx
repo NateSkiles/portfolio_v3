@@ -1,4 +1,4 @@
-import { chirpImages } from 'utils'
+import { chirpImages, mythaiImages } from 'utils'
 import { FaChevronRight } from 'react-icons/fa'
 import { Project } from 'types/components'
 import Modal from './Modal'
@@ -20,6 +20,27 @@ const projects: Project[] = [
     },
     languages: 'Typescript, CSS',
     frameworks: 'Next.js, Tailwindcss, Prisma, Clerk'
+  },
+  {
+    id: 2,
+    title: 'MyThai!',
+    github: 'https://github.com/NateSkiles/MyThai-Code-Summary',
+    description:
+      "The task of this project was to create an app in the Django framework that would help the user keep track of a collection of items. The app I created is used to store the user's favorite Thai food takeout. The user can add a restaurant they ordered from and the dish(es) they ordered, with a rating and description. Allows user to search or sort the SQLite database to find specific dishes from multiple restaurants and compare the ratings they gave to those dishes.",
+    pictures: {
+      cover: {
+        url: mythaiImages.mythaiCoverUrl,
+        altText: ''
+      },
+      screenshots: [
+        mythaiImages.mythaiSs1Url,
+        mythaiImages.mythaiSs2Url,
+        mythaiImages.mythaiSs3Url,
+        mythaiImages.mythaiSs4Url
+      ]
+    },
+    languages: 'HTML, CSS, JavaScript, Python',
+    frameworks: 'Django, SQLite, PyCharm, jQuery/AJAX'
   }
 ]
 
@@ -46,11 +67,17 @@ export default function Projects() {
                 <div className="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                   <Modal project={project} />
                   <div className="p-5">
-                    <h5 className="mb-2 text-2xl font-bold text-white hover:text-blue-400">
-                      <a href={href}>{title}</a>
+                    <h5
+                      className={`mb-2 text-2xl font-bold text-white ${
+                        href && 'hover:text-blue-400'
+                      }`}
+                    >
+                      <a href={href} target="_blank" rel="noreferrer">
+                        {title}
+                      </a>
                     </h5>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                      {description}
+                      {description.slice(0, 240) + '...'}
                     </p>
                     <div className="inline-flex w-full items-center justify-end text-blue-500 hover:text-blue-400">
                       <a href={github} target="_blank" rel="noreferrer">

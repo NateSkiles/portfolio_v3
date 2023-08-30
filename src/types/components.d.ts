@@ -5,7 +5,7 @@ export interface FormState {
 export type Project = {
   id: number
   title: string
-  href: string
+  href?: string
   github: string
   description: string
   pictures: ProjectPictures
