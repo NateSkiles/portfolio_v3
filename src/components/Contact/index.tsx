@@ -75,6 +75,7 @@ export default function Contact() {
                         name="name"
                         onChange={handleInputChange}
                         required
+                        autoComplete="name"
                         className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-slate-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
                       />
                     </div>
@@ -93,6 +94,7 @@ export default function Contact() {
                         name="email"
                         onChange={handleInputChange}
                         required
+                        autoComplete="email"
                         className="w-full rounded border border-gray-300 bg-gray-100 px-3 py-1 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500"
                       />
                     </div>
