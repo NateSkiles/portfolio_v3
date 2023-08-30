@@ -10,7 +10,7 @@ const projects: Project[] = [
     href: 'https://chirp.nateskiles.dev',
     github: 'https://github.com/NateSkiles/chirp',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
+      "A quirky take on social media platforms, where users are challenged to express themselves using only emojis. Built using Next.js, Chirp ensures a smooth and dynamic user experience, while Clerk Authentication provides a secure and hassle-free login process. Under the hood, Prisma is used to manage database operations. The whimsical design, brought to life by Tailwind CSS, guarantees an enjoyable and responsive interface adaptable across various devices. The backbone of communication, tRPC, handles client-server interactions to elevate the app's performance.",
     pictures: {
       cover: {
         url: chirpImages.chirpCoverUrl,
@@ -19,7 +19,7 @@ const projects: Project[] = [
       screenshots: [chirpImages.chirpSs1Url, chirpImages.chirpSs2Url]
     },
     languages: 'Typescript, CSS',
-    frameworks: 'Next.js, Tailwindcss, Prisma, Clerk'
+    frameworks: 'React, Next.js, Tailwindcss, Prisma, Clerk'
   },
   {
     id: 2,

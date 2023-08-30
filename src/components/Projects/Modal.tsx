@@ -59,7 +59,7 @@ export default function Modal({ project }: ModalProps) {
       </button>
       {showModal && (
         <>
-          <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
+          <div className="fixed inset-0 z-50 flex justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
             <div
               ref={modalRef}
               className="relative mx-auto my-6 w-auto max-w-3xl"
@@ -109,7 +109,7 @@ export default function Modal({ project }: ModalProps) {
                 <div className="flex items-start justify-between rounded-t border-t border-solid border-slate-200 p-5">
                   {description}
                 </div>
-                <div className="mb-8 flex justify-center">
+                <div className="mb-8 flex justify-center p-4">
                   <div>
                     <b>Languages:</b> {languages}
                     <br />
