@@ -1,4 +1,4 @@
-import { chirpImages, mythaiImages } from 'utils'
+import { chirpImages, mythaiImages, weatherImages } from 'utils'
 import { FaChevronRight } from 'react-icons/fa'
 import { Project } from 'types/components'
 import Modal from './Modal'
@@ -41,6 +41,27 @@ const projects: Project[] = [
     },
     languages: 'HTML, CSS, JavaScript, Python',
     frameworks: 'Django, SQLite, PyCharm, jQuery/AJAX'
+  },
+  {
+    id: 3,
+    title: 'Weather App',
+    href: 'https://weather.nateskiles.dev/',
+    github: 'https://github.com/NateSkiles/weather-app',
+    description:
+      "I used this project to learn how to deploy apps to an AWS EC2 instance, create webservers using Express and Nginx, and build webpage templates using handlebars. The app takes the users input and makes an API call to Mapbox in order to retrieve the latitude and longitude returned from the query. That data is then passed to the Weather stack API to return information about the location from the user's search. Finally, using client side JavaScript, renders the data returned from the response.",
+    pictures: {
+      cover: {
+        url: weatherImages.weatherCoverUrl,
+        altText: ''
+      },
+      screenshots: [
+        weatherImages.weatherSs1Url,
+        weatherImages.weatherSs2Url,
+        weatherImages.weatherSs3Url
+      ]
+    },
+    languages: 'HTML, CSS, JavaScript, Node.js',
+    frameworks: 'Express, Handlebars'
   }
 ]
 
