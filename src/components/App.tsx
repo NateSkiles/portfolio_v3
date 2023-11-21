@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react'
 import About from './About'
 import Contact from './Contact'
 import Navbar from './Navbar'
@@ -8,6 +9,7 @@ import { SectionProvider } from './utils'
 function App() {
   return (
     <SectionProvider>
+      <Analytics />
       <main>
         <Navbar />
         <About />
